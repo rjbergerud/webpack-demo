@@ -1,3 +1,6 @@
 body {
-  background: blue
+  background: orange;
+  font-style: oblique;
+  cursor: all-scroll;
+  font-family: sans-serif;
 }
