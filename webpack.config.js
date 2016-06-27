@@ -20,7 +20,7 @@ const common = {
   },
   output: {
     path: './build',
-    filename: '[name].js'
+    filename: '[name].[chunkhash].js'
   },
   module: {
     loaders: [
