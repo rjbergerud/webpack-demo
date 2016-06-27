@@ -21,6 +21,6 @@
     "webpack-validator": "^2.2.0"
   },
   "dependencies": {
-    "webpack": "^1.13.1"
+    "jquery": "^3.0.0"
   }
 }

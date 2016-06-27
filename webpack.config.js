@@ -5,6 +5,7 @@ const merge = require('webpack-merge')
 const validate = require('webpack-validator')
 
 const parts = require('./libs/parts')
+const pkg = require('./package.json')
 
 // /* Might not be necessary to have absolute path */
 // const PATHS = {
@@ -14,7 +15,8 @@ const parts = require('./libs/parts')
 
 const common = {
   entry: {
-    app: './app'
+    app: './app',
+    vendor:  Object.keys(pkg.dependencies)
   },
   output: {
     path: './build',
@@ -42,7 +44,11 @@ const common = {
 var config;
 switch(process.env.npm_lifecycle_event) {
   case 'build':
-    config = merge(common, {});
+    config = merge(
+      common,
+      {devtool: 'source-map'},
+      parts.minify()
+    );
     break;
   default:
     config = merge(
