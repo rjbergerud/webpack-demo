@@ -1,4 +1,8 @@
 const webpack = require('webpack');
+const path = require('path')
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 
 exports.devServer = function(options) {
   return {
@@ -46,4 +50,29 @@ exports.minify = function() {
       })
     ]
   };
+}
+
+exports.output = function(path, naming) {
+  return {
+    output: {
+      filename: naming
+    }
+  }
+}
+exports.extractCSS = function(paths) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loader: ExtractTextPlugin.extract('style', 'css'),
+          include: paths
+        }
+      ]
+    },
+    plugins: [
+      //Output extracted CSS to a file
+      new ExtractTextPlugin('[name].[chunkhash].css')
+    ]
+  }
 }
